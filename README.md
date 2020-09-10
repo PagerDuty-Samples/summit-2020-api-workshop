@@ -8,3 +8,12 @@ Requirements:
 
 ### Walkthrough available via Katacoda
 https://katacoda.com/bzmw/scenarios/summit-2020-api-workshop
+
+
+## Directory Structure
+
+`completed` -> The complete code for the App
+
+`skeleton` -> Empty functions intended to be filled out during the workshop.
+
+`summit-2020-api-workshop` -> Katacoda definitions
