@@ -25,9 +25,9 @@ We'll be doing most of our work in this file. When our Flask server starts up it
 
 [PDPyras](https://github.com/PagerDuty/pdpyras) is a lightweight Python client for our API.
 
-The skeleton already instantiates a Session in `startup.py` on line 8.
+The skeleton already instantiates a Session in `startup.py:8`.
 
-Paste the below python code into the `get_default_escalation_policy_id()` function definition in `startup.py`
+Paste the below python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
 ```python
 escalation_policy = PagerDutyAPISession.rget(
     '/escalation_policies',

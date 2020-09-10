@@ -9,10 +9,9 @@ PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
     print("doing startup things.")
-    service_id = create_or_get_service_id()
-    print (f"Service ID: {service_id}")
+    escalation_policy_id = get_default_escalation_policy_id()
+    service_id = get_or_create_service_id(escalation_policy_id)
     ruleset_id, integration_key = get_or_create_events_v2_integration_key(service_id)
-    print (f"Integration Key: {integration_key}")
     create_event_rule(ruleset_id, service_id)
 
     # Loop until the program is exited!
@@ -32,25 +31,25 @@ def get_default_escalation_policy_id():
             print(f"Found 1 escalation policy: {default_escalation_policy_id}")
             return default_escalation_policy_id
         else:
-            raise
+            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
 
-def create_or_get_service_id():
-    print("Create or get Services.")
+def get_or_create_service_id(escalation_policy_id):
+    print("Get or Create Service.")
     escalation_policy_id = get_default_escalation_policy_id()
     try:
-        service = PagerDutyAPISession.rget(
+        services = PagerDutyAPISession.rget(
             '/services',
             params={'query': SERVICE_NAME}
         )
-        if len(service) == 1:
-            print ("Service already exists.")
-            return service[0]['id']
-        elif len(service) == 0:
-            print ('Create service.')
-            #create service
+        service_id = None
+        if len(services) == 1:
+            print ("Found already existing service.")
+            service_id = services[0]['id']
+        elif len(services) == 0:
+            print ('Creating service.')
             new_service = PagerDutyAPISession.rpost(
                 '/services',
                 json={
@@ -63,12 +62,15 @@ def create_or_get_service_id():
                     },
                     "alert_creation": "create_alerts_and_incidents"
                 })
-            return new_service['id']
+            service_id = new_service['id']
+        else:
+            raise Exception(f"Found more services than expected. Found {len(services)}")
+        return service_id
     except PDClientError as e:
         print(e.msg)
 
 def get_or_create_events_v2_integration_key(service_id):
-    print ("creating events integration")
+    print("Get or Create Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
             f'/rulesets'
@@ -76,7 +78,7 @@ def get_or_create_events_v2_integration_key(service_id):
         if len(rulesets) == 1:
             return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
         else:
-            print("Found more global event rulesets than expected!")
+            raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
