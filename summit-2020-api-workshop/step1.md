@@ -1,14 +1,12 @@
 Let's do some setup
 
-## Task
-
-#### Clone our example code.
+### Clone our example code.
 
 Clone the example code:
 
 `git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
 
-#### Install some requirements
+### Install some requirements
 
 Install pipenv:
 

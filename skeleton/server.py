@@ -3,8 +3,17 @@ from flask import Flask
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
-    import startup
-    startup.startup()
+    try:
+        import startup
+        startup.startup()
+    except NotImplementedError:
+        import traceback
+        exceptiondata = traceback.format_exc().splitlines()
+        exceptionarray = exceptiondata[:2]
+        print ("----")
+        print (exceptionarray[1])
+        print ("NotImplementedError caught! exiting...")
+        exit()
 
     import views
     app.register_blueprint(views.bp)
