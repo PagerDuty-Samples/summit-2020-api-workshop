@@ -11,3 +11,7 @@ Set the `FLASK_APP` environment variable so that the Flask server knows where th
 Run the Flask Server, we should expect to see an error.
 
 `flask run`{{execute}}
+
+## NotImplementedError
+
+Let's get started implementing!

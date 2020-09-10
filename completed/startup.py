@@ -21,6 +21,21 @@ def startup():
         send_twitter_statuses_to_events_API(integration_key, twitter_statuses)
         time.sleep(15)
 
+def get_default_escalation_policy_id():
+    print("Get default Escalation Policy")
+    try:
+        escalation_policy = PagerDutyAPISession.rget(
+            '/escalation_policies',
+            params={'query': 'Default'})
+        if len(escalation_policy) == 1:
+            default_escalation_policy_id = escalation_policy[0]['id']
+            print(f"Found 1 escalation policy: {default_escalation_policy_id}")
+            return default_escalation_policy_id
+        else:
+            raise
+    except PDClientError as e:
+        print(e.msg)
+        print(e.response.text)
 
 def create_or_get_service_id():
     print("Create or get Services.")
@@ -51,20 +66,6 @@ def create_or_get_service_id():
             return new_service['id']
     except PDClientError as e:
         print(e.msg)
-
-def get_default_escalation_policy_id():
-    print("Get default Escalation Policy")
-    try:
-        escalation_policy = PagerDutyAPISession.rget(
-            '/escalation_policies',
-            params={'query': 'Default'})
-        if len(escalation_policy) == 1:
-            return escalation_policy[0]['id']
-        else:
-            raise Exception
-    except PDClientError as e:
-        print(e.msg)
-        print(e.response.text)
 
 def get_or_create_events_v2_integration_key(service_id):
     print ("creating events integration")
