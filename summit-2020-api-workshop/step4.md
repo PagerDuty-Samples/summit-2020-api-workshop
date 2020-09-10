@@ -19,7 +19,7 @@ We can list the existing Escalation Policies via the["List Escalation Policies" 
 
 We'll be doing most of our work in this file. When our Flask server starts up it enter this file through the `startup()` function.
 
-`./app/skeleton/startup.py`{{open}}
+**Click here to open** -> `./app/skeleton/startup.py`{{open}}
 
 ## Using PDPyras
 

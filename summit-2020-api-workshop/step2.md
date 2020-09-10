@@ -6,7 +6,9 @@ Next let's put in our API keys.
 
 ## Enter your keys into the .env file.
 
-Open up the `.env` file for editing `./app/skeleton/.env`{{open}}
+Open up the `.env` file for editing
+
+**Click here to open** -> `./app/skeleton/.env`{{open}}
 
 ## 1. (Required) Enter in your PagerDuty REST API Key
 
