@@ -19,3 +19,7 @@ for status in statuses:
         severity='info',
         custom_details=status)
 ```{{copy}}
+
+## Run the server again
+
+`flask run`{{execute}}

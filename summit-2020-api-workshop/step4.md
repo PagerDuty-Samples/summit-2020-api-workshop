@@ -44,3 +44,7 @@ else:
 ```{{copy}}
 
 This code uses the `rget` PDPyras method to get information from the List Escalation Policies endpoint.
+
+## Run the server again
+
+`flask run`{{execute}}

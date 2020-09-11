@@ -62,3 +62,7 @@ else:
     raise Exception(f"Found more services than expected. Found {len(services)}")
 return service_id
 ```{{copy}}
+
+## Run the server again
+
+`flask run`{{execute}}

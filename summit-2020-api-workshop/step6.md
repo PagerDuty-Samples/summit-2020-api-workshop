@@ -19,3 +19,8 @@ if len(rulesets) == 1:
 else:
     raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
 ```{{copy}}
+
+
+## Run the server again
+
+`flask run`{{execute}}

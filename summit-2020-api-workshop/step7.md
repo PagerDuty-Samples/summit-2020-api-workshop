@@ -49,3 +49,7 @@ event_rule = PagerDutyAPISession.rpost(
     }
 )
 ```{{copy}}
+
+## Run the server again
+
+`flask run`{{execute}}
