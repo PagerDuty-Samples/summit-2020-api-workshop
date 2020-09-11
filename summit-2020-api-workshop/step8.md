@@ -9,7 +9,6 @@ Fill out the `send_twitter_statuses_to_events_API()` function in `startup.py`
 ## Completed Code
 
 ```python
-print("Send Twitter Statuses to Events API.")
 session = EventsAPISession(integration_key)
 
 for status in statuses:

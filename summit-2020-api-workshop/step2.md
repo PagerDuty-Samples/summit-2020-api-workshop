@@ -22,18 +22,7 @@ Open up the `.env` file for editing
 
 For example: `PAGERDUTY_REST_API_KEY="my-key-goes-here"`
 
-## 2. (Required) Enter in your PagerDuty Events Routing Key
-
-1. On your PagerDuty Developer account navigate to the main dashboard by clicking "Return to PagerDuty Account."
-1. In the top navigation bar click "Configuration."
-1. In the Configuration dropdown click "Event Rules."
-1. On the "Rulesets" page click the "Default Global Ruleset" ruleset.
-1. Copy the Integration Key, a 32 character alphanumeric string.
-1. Back in the editor paste in the copied Integration Key inbetween the quotes of the key `PAGERDUTY_EVENTS_ROUTING_KEY`.in the `.env` file.
-
-For example: `PAGERDUTY_EVENTS_ROUTING_KEY="my-key-goes-here"`
-
-## 3. (Optional, recommended) Enter in your Twitter Bearer Token
+## 2. (Optional, recommended) Enter in your Twitter Bearer Token
 
 1. Access your Twitter Developer Account by navigating to the [Dashboard.](https://developer.twitter.com/en/portal/dashboard) https://developer.twitter.com/en/portal/dashboard
 1. Click "Projects & Apps" in the left sidebar.

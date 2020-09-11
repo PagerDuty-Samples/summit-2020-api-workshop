@@ -48,4 +48,4 @@ event_rule = PagerDutyAPISession.rpost(
         }
     }
 )
-```{copy}
+```{{copy}}
