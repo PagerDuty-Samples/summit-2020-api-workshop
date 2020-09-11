@@ -2,21 +2,27 @@ from pdpyras import APISession, PDClientError, EventsAPISession
 from os import environ as ENV
 
 import twitter
+import time
 
 
 SERVICE_NAME="PDSummit Twitter Service"
 PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
-    print("doing startup things.")
+    print("Starting Up!")
     escalation_policy_id = get_default_escalation_policy_id()
+    print(f"Got an Escalation Policy Id: {escalation_policy_id}")
     service_id = get_or_create_service_id(escalation_policy_id)
-    ruleset_id, integration_key = get_or_create_events_v2_integration_key(service_id)
+    print(f"Got a Service Id: {service_id}")
+    ruleset_id, integration_key = get_events_v2_integration_key(service_id)
+    print(f"Got an Integration Key: {integration_key}")
     create_event_rule(ruleset_id, service_id)
+    print(f"Event Rule Created!")
 
     # Loop until the program is exited!
     while True:
         twitter_statuses = twitter.query_twitter()
+        print(f"Twitter returned {len(twitter_statuses)} tweets.")
         send_twitter_statuses_to_events_API(integration_key, twitter_statuses)
         time.sleep(15)
 
@@ -38,7 +44,6 @@ def get_default_escalation_policy_id():
 
 def get_or_create_service_id(escalation_policy_id):
     print("Get or Create Service.")
-    escalation_policy_id = get_default_escalation_policy_id()
     try:
         services = PagerDutyAPISession.rget(
             '/services',
@@ -55,7 +60,7 @@ def get_or_create_service_id(escalation_policy_id):
                 json={
                     'name': SERVICE_NAME,
                     'type': 'service',
-                    'description': 'hey',
+                    'description': 'PagerDuty Summit Twitter Matches',
                     "escalation_policy": {
                         "id": escalation_policy_id,
                         "type": "escalation_policy_reference"
@@ -68,9 +73,10 @@ def get_or_create_service_id(escalation_policy_id):
         return service_id
     except PDClientError as e:
         print(e.msg)
+        print(e.response.text)
 
-def get_or_create_events_v2_integration_key(service_id):
-    print("Get or Create Events Integration Key.")
+def get_events_v2_integration_key(service_id):
+    print("Get Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
             f'/rulesets'
@@ -83,18 +89,8 @@ def get_or_create_events_v2_integration_key(service_id):
         print(e.msg)
         print(e.response.text)
 
-def send_twitter_statuses_to_events_API(integration_key, statuses):
-    session = EventsAPISession(integration_key)
-
-    for status in statuses:
-        print("Triggering on Events API")
-        response = session.trigger(
-            f"Matching tweet from user @{status['user']['screen_name']}",
-            'twitter.com',
-            severity='info',
-            custom_details=status)
-
 def create_event_rule(ruleset_id, service_id):
+    print("Create Event Rule.")
     try:
         events_rules = PagerDutyAPISession.rget(
             f'/rulesets/{ruleset_id}/rules'
@@ -136,3 +132,16 @@ def create_event_rule(ruleset_id, service_id):
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
+
+
+def send_twitter_statuses_to_events_API(integration_key, statuses):
+    print("Send Twitter Statuses to Events API.")
+    session = EventsAPISession(integration_key)
+
+    for status in statuses:
+        print("Triggering on Events API")
+        response = session.trigger(
+            f"Matching tweet from user @{status['user']['screen_name']}",
+            'twitter.com',
+            severity='info',
+            custom_details=status)

@@ -27,7 +27,10 @@ We'll be doing most of our work in this file. When our Flask server starts up it
 
 The skeleton already instantiates a Session in `startup.py:8`.
 
+## Get Default Escalation Policy
+
 Paste the below python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
+
 ```python
 escalation_policy = PagerDutyAPISession.rget(
     '/escalation_policies',

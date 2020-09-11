@@ -2,7 +2,7 @@ import requests
 from os import environ as ENV
 
 def query_twitter():
-    print ("query twitter")
+    print("Querying Twitter...")
     bearer_token = ENV.get('TWITTER_BEARER_TOKEN')
 
     # If the user doesn't have a Twitter Developer account then use the mock server.
