@@ -14,7 +14,7 @@ def startup():
     print(f"Got an Escalation Policy Id: {escalation_policy_id}")
     service_id = get_or_create_service_id(escalation_policy_id)
     print(f"Got a Service Id: {service_id}")
-    ruleset_id, integration_key = get_events_v2_integration_key(service_id)
+    ruleset_id, integration_key = get_events_v2_integration_key()
     print(f"Got an Integration Key: {integration_key}")
     create_event_rule(ruleset_id, service_id)
     print(f"Event Rule Created!")
@@ -75,7 +75,7 @@ def get_or_create_service_id(escalation_policy_id):
         print(e.msg)
         print(e.response.text)
 
-def get_events_v2_integration_key(service_id):
+def get_events_v2_integration_key():
     print("Get Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
