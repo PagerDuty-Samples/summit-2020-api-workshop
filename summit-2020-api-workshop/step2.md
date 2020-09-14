@@ -1,17 +1,30 @@
-Next let's put in our API keys.
+# Setup Credentials
+
+Before we get started coding we need to enter some API Keys and Credentials.
 
 ## Setup the .env file
+
+We will be storing our credentials in a file which will be automatically loaded by our code.
+
+We have created a sample of this file so let's first make a copy of it.
+
+Make a copy of the file and remove 'sample' from the name.
 
 `cp .env-sample .env`{{execute}}
 
 ## Enter your keys into the .env file.
 
-Open up the `.env` file for editing
+Open up the `.env` file for editing.
 
 **Click here to open** -> `./app/skeleton/.env`{{open}}
 
-## 1. (Required) Enter in your PagerDuty REST API Key
+### 1. (Required) Enter in your PagerDuty REST API Key
 
+First we will get our PagerDuty REST API Key, we will need this to read and write information to our PagerDuty account.
+
+If you missed the pre-requisite to sign up for a Developer account you can quickly [sign up for one here.](https://developer.pagerduty.com/sign-up/)
+
+1. Open you PagerDuty Developer account.
 1. On your PagerDuty Developer account navigate to the main dashboard by clicking "Return to PagerDuty Account."
 1. In the top navigation bar click "Configuration."
 1. In the Configuration dropdown click "API Access."
@@ -22,7 +35,11 @@ Open up the `.env` file for editing
 
 For example: `PAGERDUTY_REST_API_KEY="my-key-goes-here"`
 
-## 2. (Optional, recommended) Enter in your Twitter Bearer Token
+### 2. (Optional, recommended) Enter in your Twitter Bearer Token
+
+Second we will get the Bearer Token for our Twitter Developer account.
+
+If you missed this pre-requisite you can skip it and the App will use a mock server we created or you can try to quickly sign up [here](https://developer.twitter.com/en/apply-for-access) however this may take several minutes.
 
 1. Access your Twitter Developer Account by navigating to the [Dashboard.](https://developer.twitter.com/en/portal/dashboard) https://developer.twitter.com/en/portal/dashboard
 1. Click "Projects & Apps" in the left sidebar.
