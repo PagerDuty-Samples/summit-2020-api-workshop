@@ -1,17 +1,25 @@
-Let's do some setup
+# Setup
 
-### Clone our example code.
+First we need to do some setup.
 
-Clone the example code:
+## Clone our example code.
+
+We need to clone our example code. In this repository we have the completed code as well as the skeleton that we will be building off of.
 
 `git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
 
-### Install some requirements
+## Install some requirements
 
-Install pipenv:
+We will be using the the Python language to build our App. We will also be using some 3rd party Open Source Libraries. We can quickly install these using the commands below.
+
+### 1. Install pipenv:
+
+Pipenv is a helpful tool for managing dependencies, let's install it and install our dependencies.
 
 `pip install pipenv && pipenv install`{{execute}}
 
-Open the available shell:
+### 2. Open the available shell:
+
+Now that our dependencies are installed let's activate a virtual environment where we can use them.
 
 `pipenv shell`{{execute}}
