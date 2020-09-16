@@ -1,9 +1,9 @@
 # Escalation Policy
 
 To setup our account we're going to need a few things:
- - Service
- - Escalation Policy
- - Event Rule
+ - Service: this represents an entity that you would like to monitor. In this case, it's the Twitter feed.
+ - Escalation Policy: this determines who will be alerted if the service has an incident.
+ - Event Rule: these allow you to set up simple yet powerful rules for interpreting the events sent to PagerDuty, and whether incidents should be created from them or not.
 
 ## Service requires an Escalation Policy
 
