@@ -1,10 +1,10 @@
 # Event Rules
 
-We will need to create an Event Rule to filter our tweets.
+We will need to create an Event Rule to filter our tweets -- otherwise our service will be too noisey!
 
 Let's create an event rule that escalates the event to an Incident if the tweet contains a mention of PagerDuty CEO @jenntejada.
 
-We can use the Rulesets API for this again, this time we will use the [Rule Creation endpoint.](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/post)
+We can use the Rulesets API for this again, this time we will use the [Rule Creation endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/post).
 
 Fill out the `create_event_rule()` function in `startup.py`.
 
