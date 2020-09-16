@@ -11,7 +11,7 @@ def query_twitter():
         return r.json()['statuses']
 
     r = requests.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q=pagerduty%20%20OR%20%23pdsummit%20OR%20pagerdutysummit',
+        'https://api.twitter.com/1.1/search/tweets.json?q=pagerduty%20%20OR%20%23pdsummit',
         headers = {'authorization': f'Bearer {bearer_token}'}
         )
     if r.status_code == 401:
