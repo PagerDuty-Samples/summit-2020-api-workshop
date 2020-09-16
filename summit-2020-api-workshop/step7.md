@@ -1,54 +1,25 @@
-# Event Rules
+# Events Integration
 
-We will need to create an Event Rule to filter our tweets.
+We'll be using the Global Events API to send our Tweets into PagerDuty.
 
-Let's create an event rule that escalates the event to an Incident if the tweet contains a mention of PagerDuty CEO @jenntejada.
+## Get the Routing Key
 
-We can use the Rulesets API for this again, this time we will use the [Rule Creation endpoint.](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/post)
+The routing key (aka integration key) is used to identify to the ruleset that we want to use.
 
-Fill out the `create_event_rule()` function in `startup.py`.
+Get the Routing Key from the Default Ruleset using the [Rulesets API](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get). We should only have 1 ruleset with 1 routing key.
 
-## Completed Code
+Fill out the `get_events_v2_integration_key()` function in `startup.py`.
 
 ```python
-events_rules = PagerDutyAPISession.rget(
-    f'/rulesets/{ruleset_id}/rules'
+rulesets = PagerDutyAPISession.rget(
+    f'/rulesets'
 )
-if (len(events_rules)) == 2:
-    print("Event Rule already exists, moving on.")
-    return
-print("Event Rule doesn't exist, creating.")
-event_rule = PagerDutyAPISession.rpost(
-    f'/rulesets/{ruleset_id}/rules',
-    json={
-        "rule": {
-            "conditions": {
-                "operator": "or",
-                "subconditions": [
-                    {
-                        "parameters": {
-                            "value": "jenntejada",
-                            "path": "payload.custom_details.entities.user_mentions"
-                        },
-                        "operator": "contains"
-                    }
-                ],
-            },
-            "actions": {
-                "severity": {
-                    "value": "critical"
-                },
-                "priority": {
-                    "value": "PD6DVC6"
-                },
-                "route": {
-                    "value": service_id
-                }
-            }
-        }
-    }
-)
+if len(rulesets) == 1:
+    return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
+else:
+    raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
 ```{{copy}}
+
 
 ## Run the server again
 

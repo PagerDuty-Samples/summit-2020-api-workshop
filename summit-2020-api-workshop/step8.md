@@ -1,23 +1,53 @@
-# Send Tweets to the Global Events API
+# Event Rules
 
-The final part of our startup file will be to send any tweets that we get to the Global Events endpoint.
+We will need to create an Event Rule to filter our tweets.
 
-We will need to use the [Events API](https://github.com/PagerDuty/pdpyras#events-api-usage) for this.
+Let's create an event rule that escalates the event to an Incident if the tweet contains a mention of PagerDuty CEO @jenntejada.
 
-Fill out the `send_twitter_statuses_to_events_API()` function in `startup.py`
+We can use the Rulesets API for this again, this time we will use the [Rule Creation endpoint.](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/post)
+
+Fill out the `create_event_rule()` function in `startup.py`.
 
 ## Completed Code
 
 ```python
-session = EventsAPISession(integration_key)
-
-for status in statuses:
-    print("Triggering on Events API")
-    response = session.trigger(
-        f"Matching tweet from user @{status['user']['screen_name']}",
-        'twitter.com',
-        severity='info',
-        custom_details=status)
+events_rules = PagerDutyAPISession.rget(
+    f'/rulesets/{ruleset_id}/rules'
+)
+if (len(events_rules)) == 2:
+    print("Event Rule already exists, moving on.")
+    return
+print("Event Rule doesn't exist, creating.")
+event_rule = PagerDutyAPISession.rpost(
+    f'/rulesets/{ruleset_id}/rules',
+    json={
+        "rule": {
+            "conditions": {
+                "operator": "or",
+                "subconditions": [
+                    {
+                        "parameters": {
+                            "value": "jenntejada",
+                            "path": "payload.custom_details.entities.user_mentions"
+                        },
+                        "operator": "contains"
+                    }
+                ],
+            },
+            "actions": {
+                "severity": {
+                    "value": "critical"
+                },
+                "priority": {
+                    "value": "PD6DVC6"
+                },
+                "route": {
+                    "value": service_id
+                }
+            }
+        }
+    }
+)
 ```{{copy}}
 
 ## Run the server again

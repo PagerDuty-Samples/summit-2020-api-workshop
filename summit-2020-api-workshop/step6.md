@@ -1,25 +1,67 @@
-# Events Integration
+# Services
 
-We'll be using the Global Events API to send our Tweets into PagerDuty.
+## Create a Service
 
-## Get the Routing Key
+We want to have a Service which Incidents and Alerts will be trigger on.
 
-The routing key (aka integration key) is used to identify to the ruleset that we want to use.
-
-Get the Routing Key from the Default Ruleset using the [Rulesets API](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get). We should only have 1 ruleset with 1 routing key.
-
-Fill out the `get_events_v2_integration_key()` function in `startup.py`.
+Let's use the [Create Service](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/post) endpoint to create a Service.
 
 ```python
-rulesets = PagerDutyAPISession.rget(
-    f'/rulesets'
-)
-if len(rulesets) == 1:
-    return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
-else:
-    raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
+print ('Creating service.')
+new_service = PagerDutyAPISession.rpost(
+    '/services',
+    json={
+        'name': SERVICE_NAME,
+        'type': 'service',
+        'description': 'PagerDuty Summit Twitter Matches',
+        "escalation_policy": {
+            "id": escalation_policy_id,
+            "type": "escalation_policy_reference"
+        },
+        "alert_creation": "create_alerts_and_incidents"
+    })
+service_id = new_service['id']
 ```{{copy}}
 
+
+## Get or Create
+
+Now that we've created the service we are going to want to make sure that we don't create a new service every single time.
+
+Use the [List Services](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/get) endpoint to list the services.
+
+Use a simple check on the number of services to check if one already exists.
+
+## Finished Code
+
+```python
+services = PagerDutyAPISession.rget(
+    '/services',
+    params={'query': SERVICE_NAME}
+)
+service_id = None
+if len(services) == 1:
+    print ("Found already existing service.")
+    service_id = services[0]['id']
+elif len(services) == 0:
+    print ('Creating service.')
+    new_service = PagerDutyAPISession.rpost(
+        '/services',
+        json={
+            'name': SERVICE_NAME,
+            'type': 'service',
+            'description': 'PagerDuty Summit Twitter Matches',
+            "escalation_policy": {
+                "id": escalation_policy_id,
+                "type": "escalation_policy_reference"
+            },
+            "alert_creation": "create_alerts_and_incidents"
+        })
+    service_id = new_service['id']
+else:
+    raise Exception(f"Found more services than expected. Found {len(services)}")
+return service_id
+```{{copy}}
 
 ## Run the server again
 
