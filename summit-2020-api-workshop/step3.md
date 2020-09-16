@@ -2,7 +2,9 @@
 
 ## Set the FLASK_APP environment variable
 
-First we will need to set the `FLASK_APP` environment variable so that the Flask server knows where the entry point is.
+First we will need to set the `FLASK_APP` environment variable, so that the Flask server knows where the entry point is.
+
+Note: this can't be done through the `.env` file we set up in the previous step, because the environment variable needs to exist _before_ we start the server.
 
 `export FLASK_APP=server.py`{{execute}}
 
