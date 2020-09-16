@@ -4,7 +4,7 @@ First we need to do some setup.
 
 ## Clone our example code.
 
-We need to clone our example code. In this repository we have the completed code as well as the skeleton that we will be building off of.
+We need to clone our example code. In this repository we have the completed code as well as the skeleton that we will be building from.
 
 `git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
 
