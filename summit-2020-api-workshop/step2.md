@@ -1,6 +1,6 @@
 # Setup Credentials
 
-Before we get started coding we need to enter some API Keys and Credentials.
+Before we get started coding, we need to enter some API Keys and Credentials.
 
 ## Setup the .env file
 
@@ -22,9 +22,9 @@ Open up the `.env` file for editing.
 
 First we will get our PagerDuty REST API Key, we will need this to read and write information to our PagerDuty account.
 
-If you missed the pre-requisite to sign up for a Developer account you can quickly [sign up for one here.](https://developer.pagerduty.com/sign-up/)
+If you missed the pre-requisite to sign up for a Developer account, you can quickly [sign up here](https://developer.pagerduty.com/sign-up/).
 
-1. Open you PagerDuty Developer account.
+1. Open your PagerDuty Developer account.
 1. On your PagerDuty Developer account navigate to the main dashboard by clicking "Return to PagerDuty Account."
 1. In the top navigation bar click "Configuration."
 1. In the Configuration dropdown click "API Access."
@@ -39,14 +39,14 @@ For example: `PAGERDUTY_REST_API_KEY="my-key-goes-here"`
 
 Second we will get the Bearer Token for our Twitter Developer account.
 
-If you missed this pre-requisite you can skip it and the App will use a mock server we created or you can try to quickly sign up [here](https://developer.twitter.com/en/apply-for-access) however this may take several minutes.
+If you missed this pre-requisite, you can skip it and the App will use a mock server we created. Alternately you can try to quickly sign up [here](https://developer.twitter.com/en/apply-for-access), however this may take several minutes.
 
-1. Access your Twitter Developer Account by navigating to the [Dashboard.](https://developer.twitter.com/en/portal/dashboard) https://developer.twitter.com/en/portal/dashboard
+1. Access your Twitter Developer Account by navigating to the [Dashboard](https://developer.twitter.com/en/portal/dashboard). 
 1. Click "Projects & Apps" in the left sidebar.
 1. Click "Overview" in the expanded options in the left sidebar.
 1. Create a new "App" by clicking the blue outlined button "Create App" at the bottom of the "Overview" page.
-1. Enter a helpful name. Suggested: "PagerDuty Summit App."
-1. Click "Complete."
+1. Enter a helpful name. Suggested: "PagerDuty Summit App"
+1. Click "Complete"
 1. Copy the "Bearer token", a 116 length string.
 1. Back in the editor paste in the copied Bearer Token inbetween the quotes of the key `TWITTER_BEARER_TOKEN`.in the `.env` file.
 
