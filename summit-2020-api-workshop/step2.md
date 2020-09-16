@@ -29,7 +29,7 @@ If you missed the pre-requisite to sign up for a Developer account, you can quic
 1. In the top navigation bar click "Configuration"
 1. In the Configuration dropdown click "API Access"
 1. On the "API Access Keys" page click the green "Create New API Key" button.
-1. Enter a short description. Suggested: `Summit Twitter App"
+1. Enter a short description. Suggested: "Summit Twitter App"
 1. Copy the highlighted API Key. It will be a 20 character alphanumeric string.
 1. Back in the editor paste in your copied API Key inbetween the quotes of the key `PAGERDUTY_REST_API_KEY` in the `.env` file.
 
