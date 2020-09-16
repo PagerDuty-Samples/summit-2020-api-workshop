@@ -6,7 +6,7 @@ Before we get started coding, we need to enter some API Keys and Credentials.
 
 We will be storing our credentials in a file which will be automatically loaded by our code.
 
-We have created a sample of this file so let's first make a copy of it.
+We have created a sample of this file, so let's first make a copy of it.
 
 Make a copy of the file and remove 'sample' from the name.
 
@@ -25,11 +25,11 @@ First we will get our PagerDuty REST API Key, we will need this to read and writ
 If you missed the pre-requisite to sign up for a Developer account, you can quickly [sign up here](https://developer.pagerduty.com/sign-up/).
 
 1. Open your PagerDuty Developer account.
-1. On your PagerDuty Developer account navigate to the main dashboard by clicking "Return to PagerDuty Account."
-1. In the top navigation bar click "Configuration."
-1. In the Configuration dropdown click "API Access."
+1. On your PagerDuty Developer account navigate to the main dashboard by clicking "Return to PagerDuty Account"
+1. In the top navigation bar click "Configuration"
+1. In the Configuration dropdown click "API Access"
 1. On the "API Access Keys" page click the green "Create New API Key" button.
-1. Enter a short description. Suggested: `Summit Twitter App."
+1. Enter a short description. Suggested: "Summit Twitter App"
 1. Copy the highlighted API Key. It will be a 20 character alphanumeric string.
 1. Back in the editor paste in your copied API Key inbetween the quotes of the key `PAGERDUTY_REST_API_KEY` in the `.env` file.
 

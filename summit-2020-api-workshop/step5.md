@@ -7,7 +7,7 @@ To setup our account we're going to need a few things:
 
 ## Service requires an Escalation Policy
 
-As you can see in the ["Create Service" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/post), the `escalation_policy` object is required. So we are going to need to first create or get an Escalation Policy.
+As you can see in our documentation for the ["Create Service" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/post), the `escalation_policy` object is required. So we are going to need to first create or get an Escalation Policy.
 
 ## Get the Default Escalation Policy
 
@@ -17,7 +17,7 @@ We can list the existing Escalation Policies via the["List Escalation Policies" 
 
 ## Open `startup.py`
 
-We'll be doing most of our work in this file. When our Flask server starts up it enter this file through the `startup()` function.
+We'll be doing most of our work in this file. When our Flask server starts up, it enters this file through the `startup()` function.
 
 **Click here to open** -> `./app/skeleton/startup.py`{{open}}
 
@@ -25,11 +25,11 @@ We'll be doing most of our work in this file. When our Flask server starts up it
 
 [PDPyras](https://github.com/PagerDuty/pdpyras) is a lightweight Python client for our API.
 
-The skeleton already instantiates a Session in `startup.py:8`.
+The skeleton already instantiates a Session for making API requests in `startup.py:8`.
 
 ## Get Default Escalation Policy
 
-Paste the below python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
+Paste the below Python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
 
 ```python
 escalation_policy = PagerDutyAPISession.rget(

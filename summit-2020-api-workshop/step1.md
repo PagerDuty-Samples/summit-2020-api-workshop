@@ -1,10 +1,10 @@
 # Setup
 
-First we need to do some setup.
+First, we need to do some setup.
 
-## Clone our example code.
+## Clone the example code
 
-We need to clone our example code. In this repository we have the completed code as well as the skeleton that we will be building from.
+We need to clone the example code. In this repository we have the skeleton that we will be filling in over the course of this session, as well as the completed code if you'd like to skip ahead and see the finished app. 
 
 `git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
 

@@ -4,7 +4,7 @@ We'll be using the Global Events API to send our Tweets into PagerDuty.
 
 ## Get the Routing Key
 
-The routing key (aka integration key) is used to identify to the ruleset that we want to use.
+The routing key (aka integration key) is used to identify the ruleset that we want to use.
 
 Get the Routing Key from the Default Ruleset using the [Rulesets API](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get). We should only have 1 ruleset with 1 routing key.
 

@@ -5,4 +5,4 @@ This workshop creates an App that integrates with Twitter and subscribes to the 
 The workshop will be conducted using the Python programming language and is suitable for all skill levels, including beginners. Code samples and hints will be provided if you get stuck, and there will also be a live walkthrough if you prefer to just follow along.
 
 ## Source Code
-The source code for this workshop can be found [here.](https://github.com/PagerDuty-Samples/summit-2020-api-workshop)
+The source code for this workshop can be found [here](https://github.com/PagerDuty-Samples/summit-2020-api-workshop).
