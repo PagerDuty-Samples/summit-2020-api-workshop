@@ -2,7 +2,7 @@
 
 ## Create a Service
 
-We want to have a Service which Incidents and Alerts will be trigger on.
+We want to have a Service where we can trigger Incidents and Alerts.
 
 Let's use the [Create Service](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/post) endpoint to create a Service.
 
@@ -26,11 +26,11 @@ service_id = new_service['id']
 
 ## Get or Create
 
-Now that we've created the service we are going to want to make sure that we don't create a new service every single time.
+Now that we've created the service, we are going to want to make sure that we don't create a new service every single time.
 
 Use the [List Services](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/get) endpoint to list the services.
 
-Use a simple check on the number of services to check if one already exists.
+Use a simple check on the number of services to determine if one already exists.
 
 ## Finished Code
 
