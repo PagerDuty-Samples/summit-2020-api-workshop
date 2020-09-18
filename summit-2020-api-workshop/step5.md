@@ -32,15 +32,15 @@ The skeleton already instantiates a Session for making API requests in `startup.
 Paste the below Python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
 
 ```python
-escalation_policy = PagerDutyAPISession.rget(
+escalation_policies = PagerDutyAPISession.rget(
     '/escalation_policies',
     params={'query': 'Default'})
-if len(escalation_policy) == 1:
-    default_escalation_policy_id = escalation_policy[0]['id']
+if len(escalation_policies) == 1:
+    default_escalation_policy_id = escalation_policies[0]['id']
     print(f"Found 1 escalation policy: {default_escalation_policy_id}")
     return default_escalation_policy_id
 else:
-    raise
+    raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
 ```{{copy}}
 
 This code uses the `rget` PDPyras method to get information from the List Escalation Policies endpoint.

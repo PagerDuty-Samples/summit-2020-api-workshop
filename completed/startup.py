@@ -29,11 +29,11 @@ def startup():
 def get_default_escalation_policy_id():
     print("Get default Escalation Policy")
     try:
-        escalation_policy = PagerDutyAPISession.rget(
+        escalation_policies = PagerDutyAPISession.rget(
             '/escalation_policies',
             params={'query': 'Default'})
-        if len(escalation_policy) == 1:
-            default_escalation_policy_id = escalation_policy[0]['id']
+        if len(escalation_policies) == 1:
+            default_escalation_policy_id = escalation_policies[0]['id']
             print(f"Found 1 escalation policy: {default_escalation_policy_id}")
             return default_escalation_policy_id
         else:
@@ -118,9 +118,6 @@ def create_event_rule(ruleset_id, service_id):
                     "actions": {
                         "severity": {
                             "value": "critical"
-                        },
-                        "priority": {
-                            "value": "PD6DVC6"
                         },
                         "route": {
                             "value": service_id

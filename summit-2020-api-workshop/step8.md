@@ -38,9 +38,6 @@ event_rule = PagerDutyAPISession.rpost(
                 "severity": {
                     "value": "critical"
                 },
-                "priority": {
-                    "value": "PD6DVC6"
-                },
                 "route": {
                     "value": service_id
                 }
