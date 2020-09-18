@@ -50,7 +50,8 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal"
+    "uilayout": "editor-terminal",
+    "exclusionPatterns": [".bashrc", ".cache", ".config", ".jupyter", ".npm", ".profile", ".ssh", "app/summit-2020-api-workshop", "app/README.md"]
   },
   "backend": {
     "imageid": "python:3.6"
