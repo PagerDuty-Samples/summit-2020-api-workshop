@@ -22,4 +22,3 @@ def query_twitter():
         print("Non-200 response returned!")
         print(r.status_code)
     return r.json()['statuses']
-

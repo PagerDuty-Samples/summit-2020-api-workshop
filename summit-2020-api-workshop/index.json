@@ -50,8 +50,7 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal",
-    "hideHiddenFiles": true
+    "uilayout": "editor-terminal"
   },
   "backend": {
     "imageid": "python:3.6"
