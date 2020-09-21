@@ -58,3 +58,9 @@ This code uses the `rget` PDPyras method to get information from the List Escala
 ## Run the server again
 
 `flask run`{{execute}}
+
+### Need a shortcut
+
+You can use this command to copy over completed code and skip this step.
+
+`cp ../completed/startup-step5.py startup.py`{{execute}}

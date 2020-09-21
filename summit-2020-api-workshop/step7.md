@@ -24,3 +24,10 @@ else:
 ## Run the server again
 
 `flask run`{{execute}}
+
+
+### Need a shortcut
+
+You can use this command to copy over completed code and skip this step.
+
+`cp ../completed/startup-step7.py startup.py`{{execute}}

@@ -4,7 +4,7 @@ First, we need to do some setup.
 
 ## Clone the example code
 
-We need to clone the example code. In this repository we have the skeleton that we will be filling in over the course of this session, as well as the completed code if you'd like to skip ahead and see the finished app. 
+We need to clone the example code. In this repository we have the skeleton that we will be filling in over the course of this session, as well as the completed code if you'd like to skip ahead and see the finished app.
 
 `git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
 
@@ -23,3 +23,10 @@ Pipenv is a helpful tool for managing dependencies, let's install it and install
 Now that our dependencies are installed let's activate a virtual environment where we can use them.
 
 `pipenv shell`{{execute}}
+
+
+## Need a shortcut?
+
+You can use the following command to catch up really quickly:
+
+`git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton && pip install pipenv && pipenv install && pipenv shell`{{execute}}

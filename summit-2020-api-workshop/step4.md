@@ -32,3 +32,11 @@ We'll be doing most of our work in this file. When our Flask server starts up, i
 [PDPyras](https://github.com/PagerDuty/pdpyras) is a lightweight Python client for our API.
 
 The skeleton already instantiates a Session for making API requests in `startup.py`
+
+### Need a shortcut?
+
+You can use this commands to catch up and skip this step.
+
+`export FLASK_APP=server.py`{{execute}}
+`flask run`{{execute}}
+**Click here to open** -> `./app/skeleton/startup.py`{{open}}
