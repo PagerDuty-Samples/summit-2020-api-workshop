@@ -10,7 +10,7 @@ PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
     print("Starting Up!")
-    escalation_policy_id = get_default_escalation_policy_id()
+    escalation_policy_id = get_or_create_default_escalation_policy_id()
     print(f"Got an Escalation Policy Id: {escalation_policy_id}")
     service_id = get_or_create_service_id(escalation_policy_id)
     print(f"Got a Service Id: {service_id}")
@@ -26,8 +26,8 @@ def startup():
         send_twitter_statuses_to_events_API(integration_key, twitter_statuses)
         time.sleep(15)
 
-def get_default_escalation_policy_id():
-    print("Get default Escalation Policy")
+def get_or_create_default_escalation_policy_id():
+    print("Get or create default Escalation Policy")
     try:
         raise NotImplementedError
     except PDClientError as e:
