@@ -38,5 +38,7 @@ The skeleton already instantiates a Session for making API requests in `startup.
 You can use this commands to catch up and skip this step.
 
 `export FLASK_APP=server.py`{{execute}}
+
 `flask run`{{execute}}
+
 **Click here to open** -> `./app/skeleton/startup.py`{{open}}

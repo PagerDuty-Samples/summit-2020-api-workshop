@@ -29,4 +29,4 @@ Now that our dependencies are installed let's activate a virtual environment whe
 
 You can use the following command to catch up really quickly:
 
-`git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton && pip install pipenv && pipenv install && pipenv shell`{{execute}}
+`git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton && pip install pipenv && pipenv install && pipenv shell && echo "Done Setup!"`{{execute}}

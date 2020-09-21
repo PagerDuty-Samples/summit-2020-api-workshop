@@ -55,4 +55,4 @@ event_rule = PagerDutyAPISession.rpost(
 
 You can use this command to copy over completed code and skip this step.
 
-`cp ../completed/startup-step8.py startup.py`{{execute}}
+`cp ../completed/startup-step8.py startup.py && flask run`{{execute}}

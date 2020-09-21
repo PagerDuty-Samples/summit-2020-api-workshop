@@ -41,7 +41,7 @@ Second we will get the Bearer Token for our Twitter Developer account.
 
 If you missed this pre-requisite, you can skip it and the App will use a mock server we created. Alternately you can try to quickly sign up [here](https://developer.twitter.com/en/apply-for-access), however this may take several minutes.
 
-1. Access your Twitter Developer Account by navigating to the [Dashboard](https://developer.twitter.com/en/portal/dashboard). 
+1. Access your Twitter Developer Account by navigating to the [Dashboard](https://developer.twitter.com/en/portal/dashboard).
 1. Click "Projects & Apps" in the left sidebar.
 1. Click "Overview" in the expanded options in the left sidebar.
 1. Create a new "App" by clicking the blue outlined button "Create App" at the bottom of the "Overview" page.
@@ -51,3 +51,11 @@ If you missed this pre-requisite, you can skip it and the App will use a mock se
 1. Back in the editor paste in the copied Bearer Token inbetween the quotes of the key `TWITTER_BEARER_TOKEN`.in the `.env` file.
 
 For example: `TWITTER_BEARER_TOKEN="my-key-goes-here"`
+
+### Need a shortcut?
+
+Here are the commands from this step. Just fill out the keys as defined above.
+
+`cp .env-sample .env`{{execute}}
+
+**Click here to open** -> `./app/skeleton/.env`{{open}}

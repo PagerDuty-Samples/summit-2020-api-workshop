@@ -53,4 +53,4 @@ return service_id
 
 You can use this command to copy over completed code and skip this step.
 
-`cp ../completed/startup-step6.py startup.py`{{execute}}
+`cp ../completed/startup-step6.py startup.py && flask run`{{execute}}
