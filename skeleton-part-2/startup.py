@@ -9,7 +9,6 @@ SERVICE_NAME="PDSummit Twitter Service"
 PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
-    print(ENV.get('PAGERDUTY_REST_API_KEY'))
     print("Starting Up!")
     escalation_policy_id = get_or_create_default_escalation_policy_id()
     print(f"Got an Escalation Policy Id: {escalation_policy_id}")
@@ -26,6 +25,7 @@ def startup():
         print(f"Twitter returned {len(twitter_statuses)} tweets.")
         send_twitter_statuses_to_events_API(integration_key, twitter_statuses)
         time.sleep(15)
+
 
 def get_or_create_default_escalation_policy_id():
     print("Get or create default Escalation Policy")
@@ -103,13 +103,7 @@ def get_or_create_service_id(escalation_policy_id):
 def get_events_v2_integration_key():
     print("Get Events Integration Key.")
     try:
-        rulesets = PagerDutyAPISession.rget(
-            f'/rulesets'
-        )
-        if len(rulesets) == 1:
-            return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
-        else:
-            raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
+        raise NotImplementedError
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
@@ -117,53 +111,11 @@ def get_events_v2_integration_key():
 def create_event_rule(ruleset_id, service_id):
     print("Create Event Rule.")
     try:
-        events_rules = PagerDutyAPISession.rget(
-            f'/rulesets/{ruleset_id}/rules'
-        )
-        if (len(events_rules)) == 2:
-            print("Event Rule already exists, moving on.")
-            return
-        print("Event Rule doesn't exist, creating.")
-        event_rule = PagerDutyAPISession.rpost(
-            f'/rulesets/{ruleset_id}/rules',
-            json={
-                "rule": {
-                    "conditions": {
-                        "operator": "or",
-                        "subconditions": [
-                            {
-                                "parameters": {
-                                    "value": "jenntejada",
-                                    "path": "payload.custom_details.entities.user_mentions"
-                                },
-                                "operator": "contains"
-                            }
-                        ],
-                    },
-                    "actions": {
-                        "severity": {
-                            "value": "critical"
-                        },
-                        "route": {
-                            "value": service_id
-                        }
-                    }
-                }
-            }
-        )
+        raise NotImplementedError
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
 
-
 def send_twitter_statuses_to_events_API(integration_key, statuses):
     print("Send Twitter Statuses to Events API.")
-    session = EventsAPISession(integration_key)
-
-    for status in statuses:
-        print("Triggering on Events API")
-        response = session.trigger(
-            f"Matching tweet from user @{status['user']['screen_name']}",
-            'twitter.com',
-            severity='info',
-            custom_details=status)
+    raise NotImplementedError
