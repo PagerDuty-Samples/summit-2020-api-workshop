@@ -15,21 +15,7 @@ PagerDuty accounts come with a Default Escalation Policy, so let's use that for 
 
 We can list the existing Escalation Policies via the["List Escalation Policies" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get).
 
-## Open `startup.py`
-
-We'll be doing most of our work in this file. When our Flask server starts up, it enters this file through the `startup()` function.
-
-**Click here to open** -> `./app/skeleton/startup.py`{{open}}
-
-## Using PDPyras
-
-[PDPyras](https://github.com/PagerDuty/pdpyras) is a lightweight Python client for our API.
-
-The skeleton already instantiates a Session for making API requests in `startup.py:8`.
-
-## Get Default Escalation Policy
-
-Paste the below Python code into the `get_default_escalation_policy_id()` function definition in `startup.py:28`
+## Completed Code
 
 ```python
 escalation_policies = PagerDutyAPISession.rget(
@@ -39,6 +25,30 @@ if len(escalation_policies) == 1:
     default_escalation_policy_id = escalation_policies[0]['id']
     print(f"Found 1 escalation policy: {default_escalation_policy_id}")
     return default_escalation_policy_id
+elif len(escalation_policies) == 0:
+    print("No Escalation Policies found, creating one.")
+    users = PagerDutyAPISession.rget(
+        '/users'
+    )
+    new_escalation_policy = PagerDutyAPISession.rpost(
+        '/escalation_policies',
+        json={
+            "type": "escalation_policy",
+            "name": "Default Escalation Policy",
+            "escalation_rules": [
+                {
+                    "escalation_delay_in_minutes": 5,
+                    "targets": [
+                        {
+                            "id": users[0]['id'],
+                            "type": "user_reference"
+                        }
+                    ]
+                }
+            ]
+        }
+    )
+    return new_escalation_policy['id']
 else:
     raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
 ```{{copy}}

@@ -1,25 +1,10 @@
-# Setup
+# What are we building?
 
-First, we need to do some setup.
+We'll be building a simple Twitter integration.
 
-## Clone the example code
+We will run an app that upon startup will do the following:
 
-We need to clone the example code. In this repository we have the skeleton that we will be filling in over the course of this session, as well as the completed code if you'd like to skip ahead and see the finished app. 
-
-`git clone https://github.com/PagerDuty-Samples/summit-2020-api-workshop.git app && cd app/skeleton`{{execute}}
-
-## Install some requirements
-
-We will be using the the Python language to build our App. We will also be using some 3rd party Open Source Libraries. We can quickly install these using the commands below.
-
-### 1. Install pipenv:
-
-Pipenv is a helpful tool for managing dependencies, let's install it and install our dependencies.
-
-`pip install pipenv && pipenv install`{{execute}}
-
-### 2. Open the available shell:
-
-Now that our dependencies are installed let's activate a virtual environment where we can use them.
-
-`pipenv shell`{{execute}}
+1. Create and get necessary information from our PagerDuty account.
+1. Query Twitter for Tweets that contain "#pdsummit", or "@pagerduty"
+1. Send all of the matching Tweets to PagerDuty
+1. Use an Event Rule in PagerDuty to create an Alert when one of those Tweets also contains a mention of PagerDuty CEO Jennifer Tejada ([@jenntejada](https://twitter.com/jenntejada))
