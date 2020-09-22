@@ -17,7 +17,7 @@ rulesets = PagerDutyAPISession.rget(
 if len(rulesets) == 1:
     return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
 else:
-    raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
+    raise Exception(f"Found unexpected number of rulesets. Found {len(rulesets)}")
 ```{{copy}}
 
 
