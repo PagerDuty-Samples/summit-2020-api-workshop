@@ -28,4 +28,4 @@ for status in statuses:
 
 You can use this command to copy over completed code and skip this step.
 
-`cp ../completed/startup-step9.py startup.py && flask run`{{execute}}
+`cp ../completed/completed-startup-step9.py startup.py && flask run`{{execute}}

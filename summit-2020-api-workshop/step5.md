@@ -63,4 +63,4 @@ This code uses the `rget` PDPyras method to get information from the List Escala
 
 You can use this command to copy over completed code and skip this step.
 
-`cp ../completed/startup-step5.py startup.py && flask run`{{execute}}
+`cp ../completed/completed-startup-step5.py startup.py && flask run`{{execute}}
