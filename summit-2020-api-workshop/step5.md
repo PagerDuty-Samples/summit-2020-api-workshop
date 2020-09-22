@@ -9,11 +9,9 @@ To setup our account we're going to need a few things:
 
 As you can see in our documentation for the ["Create Service" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1services/post), the `escalation_policy` object is required. So we are going to need to first create or get an Escalation Policy.
 
-## Get the Default Escalation Policy
+PagerDuty Developer Accounts don't come with a default escalation policy, so you'll first need to call the ["Create Escalation Policy" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/post) to create one.
 
-PagerDuty accounts come with a Default Escalation Policy, so let's use that for our first service.
-
-We can list the existing Escalation Policies via the["List Escalation Policies" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get).
+We can also list the existing Escalation Policies via the["List Escalation Policies" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get).
 
 ## Completed Code
 
