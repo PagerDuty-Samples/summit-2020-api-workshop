@@ -62,7 +62,7 @@ def get_or_create_default_escalation_policy_id():
             )
             return new_escalation_policy['id']
         else:
-            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
+            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policies)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
