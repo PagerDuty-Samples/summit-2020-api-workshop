@@ -15,9 +15,9 @@ Next we'll run the Flask Server.
 
 `flask run`{{execute}}
 
-## NotImplementedError
+## You should see: NotImplementedError
 
-We get a `NotImplemetedError`, this is expected as we need to implement some of our functions.
+We get a `NotImplementedError`, this is expected as we need to implement some of our functions.
 
 Let's get started implementing!
 

@@ -25,6 +25,21 @@ else:
 
 `flask run`{{execute}}
 
+### You should see: an integration key
+
+    Starting Up!
+    Get or create default Escalation Policy
+    Found 1 escalation policy: PXXXXXX
+    Got an Escalation Policy Id: PXXXXXX
+    Get or Create Service.
+    Found already existing service.
+    Got a Service Id: PXXXXXX
+    Get Events Integration Key.
+    Got an Integration Key: RXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    Create Event Rule.
+    ----
+      File "/root/app/skeleton/server.py", line 8, in create_app
+    NotImplementedError caught! exiting...
 
 ### Need a shortcut
 

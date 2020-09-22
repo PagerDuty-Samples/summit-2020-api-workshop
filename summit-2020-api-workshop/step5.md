@@ -59,6 +59,17 @@ This code uses the `rget` PDPyras method to get information from the List Escala
 
 `flask run`{{execute}}
 
+### You should see: an escalation policy
+
+    Starting Up!
+    Get or create default Escalation Policy
+    Found 1 escalation policy: PXXXXXX
+    Got an Escalation Policy Id: PXXXXXX
+    Create or get Services.
+    ----
+      File "/root/app/skeleton/server.py", line 8, in create_app
+    NotImplementedError caught! exiting...
+
 ### Need a shortcut
 
 You can use this command to copy over completed code and skip this step.

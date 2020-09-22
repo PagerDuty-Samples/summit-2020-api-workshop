@@ -51,6 +51,27 @@ event_rule = PagerDutyAPISession.rpost(
 
 `flask run`{{execute}}
 
+### You should see: 1 or more tweets from Twitter
+
+    Starting Up!
+    Get or create default Escalation Policy
+    Found 1 escalation policy: P8H24LX
+    Got an Escalation Policy Id: P8H24LX
+    Get or Create Service.
+    Found already existing service.
+    Got a Service Id: PJE2JT3
+    Get Events Integration Key.
+    Got an Integration Key: R013E1ZC6XJJ21QDEZ7M4C1R30EDPG0C
+    Create Event Rule.
+    Event Rule doesn't exist, creating.
+    Event Rule Created!
+    Querying Twitter...
+    Twitter returned 1 tweets.
+    Send Twitter Statuses to Events API.
+    ----
+      File "/root/app/skeleton/server.py", line 8, in create_app
+    NotImplementedError caught! exiting...
+
 ### Need a shortcut
 
 You can use this command to copy over completed code and skip this step.

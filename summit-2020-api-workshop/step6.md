@@ -49,6 +49,20 @@ return service_id
 
 `flask run`{{execute}}
 
+## You should see: a service
+
+    Starting Up!
+    Get or create default Escalation Policy
+    Found 1 escalation policy: PXXXXXX
+    Got an Escalation Policy Id: PXXXXXX
+    Get or Create Service.
+    Creating service.
+    Got a Service Id: PJE2JT3
+    Get Events Integration Key.
+    ----
+      File "/root/app/skeleton/server.py", line 8, in create_app
+    NotImplementedError caught! exiting...
+
 ### Need a shortcut
 
 You can use this command to copy over completed code and skip this step.

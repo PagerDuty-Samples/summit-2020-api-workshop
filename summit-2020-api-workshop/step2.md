@@ -24,6 +24,10 @@ Now that our dependencies are installed let's activate a virtual environment whe
 
 `pipenv shell`{{execute}}
 
+### You should see
+
+After running step 1, you should see "✔ Successfully created virtual environment!"
+After running step 2, your prompt should change from "$" to "(skeleton)"
 
 ## Need a shortcut?
 
