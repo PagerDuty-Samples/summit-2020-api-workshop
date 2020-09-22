@@ -2,7 +2,7 @@
 
 The final part of our startup file will be to send any tweets that we get to the Global Events endpoint.
 
-We will need to use the [Events API](https://github.com/PagerDuty/pdpyras#events-api-usage) for this.
+We will need to use the [Events API](https://developer.pagerduty.com/api-reference/reference/events-v2/openapiv3.json/paths/~1enqueue/post) for this.
 
 Fill out the `send_twitter_statuses_to_events_API()` function in `startup.py`
 
