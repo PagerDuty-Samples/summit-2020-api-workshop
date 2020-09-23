@@ -44,7 +44,7 @@ def get_or_create_service_id(escalation_policy_id):
                 })
             service_id = new_service["id"]
         else:
-            raise Exception(f"Found more services than expected. Found {len(services)}")
+            raise Exception(f"Found unexpected number of services. Found {len(services)}")
         return service_id
     except PDClientError as e:
         print(e.msg)

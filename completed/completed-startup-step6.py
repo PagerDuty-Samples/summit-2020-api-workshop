@@ -60,7 +60,7 @@ def get_or_create_escalation_policy_id():
             )
             return new_escalation_policy["id"]
         else:
-            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
+            raise Exception(f"Found unexpected number of escalation_policies. Found {len(escalation_policy)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
@@ -92,7 +92,7 @@ def get_or_create_service_id(escalation_policy_id):
                 })
             service_id = new_service["id"]
         else:
-            raise Exception(f"Found more services than expected. Found {len(services)}")
+            raise Exception(f"Found unexpected number of services. Found {len(services)}")
         return service_id
     except PDClientError as e:
         print(e.msg)

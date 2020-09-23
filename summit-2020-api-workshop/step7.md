@@ -31,7 +31,7 @@ def get_or_create_event_ruleset_id_and_routing_key():
             )
             return ruleset["id"], rulesets[0]["routing_keys"][0]
         else:
-            raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
+            raise Exception(f"Found unexpected number of rulesets. Found {len(rulesets)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
