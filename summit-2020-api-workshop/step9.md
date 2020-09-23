@@ -28,32 +28,25 @@ def send_twitter_statuses_to_events_API(integration_key, statuses):
 
 ### You should see: Triggering on Events API
 
-    Starting Up!
-    Get or create Escalation Policy
-    Found 1 escalation policy: P8H24LX
-    Got an Escalation Policy Id: P8H24LX
-    Get or Create Service.
-    Found already existing service.
-    Got a Service Id: PJE2JT3
-    Get Events Integration Key.
-    Got an Integration Key: R013E1ZC6XJJ21QDEZ7M4C1R30EDPG0C
-    Create Event Rule.
-    Event Rule already exists, moving on.
-    Event Rule Created!
-    Querying Twitter...
-    Twitter returned 2 tweets.
-    Send Twitter Statuses to Events API.
-    Triggering on Events API
-    Triggering on Events API
-    Querying Twitter...
-    Twitter returned 2 tweets.
-    Send Twitter Statuses to Events API.
-    Triggering on Events API
-    Triggering on Events API
-    Querying Twitter...
-    Twitter returned 1 tweets.
-    Send Twitter Statuses to Events API.
-    Triggering on Events API
+```
+Starting Up!
+Get or create Escalation Policy
+Found 1 escalation policy: PXXXXXX
+Got an Escalation Policy Id: PXXXXXX
+Get or Create Service.
+Found already existing service.
+Got a Service Id: PXXXXXX
+Get Events Integration Key.
+Get existing Ruleset
+Got an Integration Key: RXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Create Event Rule.
+Event Rule already exists, moving on.
+Event Rule Created!
+Querying Twitter...
+Twitter returned 1 tweets.
+Send Twitter Statuses to Events API.
+Triggering on Events API
+```
 
 Press Command-C or Ctrl-C to quit the loop
 

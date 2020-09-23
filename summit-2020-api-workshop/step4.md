@@ -21,6 +21,8 @@ We get a `NotImplementedError`, this is expected as we need to implement some of
 
 Let's get started implementing!
 
+
+
 ## Open `startup.py`
 
 We'll be doing most of our work in this file. When our Flask server starts up, it enters this file through the `startup()` function.

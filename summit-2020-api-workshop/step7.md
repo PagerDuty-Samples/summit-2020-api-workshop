@@ -44,19 +44,21 @@ def get_or_create_event_ruleset_id_and_routing_key():
 
 ### You should see: an integration key
 
-    Starting Up!
-    Get or create Escalation Policy
-    Found 1 escalation policy: PXXXXXX
-    Got an Escalation Policy Id: PXXXXXX
-    Get or Create Service.
-    Found already existing service.
-    Got a Service Id: PXXXXXX
-    Get Events Integration Key.
-    Got an Integration Key: RXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    Create Event Rule.
-    ----
-      File "/root/app/skeleton/server.py", line 8, in create_app
-    NotImplementedError caught! exiting...
+```
+Starting Up!
+Get or create Escalation Policy
+Found 1 escalation policy: PXXXXXX
+Got an Escalation Policy Id: PXXXXXX
+Get or Create Service.
+Found already existing service.
+Got a Service Id: PXXXXXX
+Get Events Integration Key.
+Got an Integration Key: RXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Create Event Rule.
+----
+  File "/root/app/skeleton/startup.py", line 129, in create_event_rule
+NotImplementedError caught! Looks like you need to implement: create_event_rule
+```
 
 ### Need a shortcut
 

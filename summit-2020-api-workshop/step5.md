@@ -65,14 +65,16 @@ This code uses the `rget` PDPyras method to get information from the List Escala
 
 ### You should see: an escalation policy
 
-    Starting Up!
-    Get or create Escalation Policy
-    Found 1 escalation policy: PXXXXXX
-    Got an Escalation Policy Id: PXXXXXX
-    Create or get Services.
-    ----
-      File "/root/app/skeleton/server.py", line 8, in create_app
-    NotImplementedError caught! exiting...
+```
+Starting Up!
+Get or create Escalation Policy
+Found 1 escalation policy: PXXXXXX
+Got an Escalation Policy Id: PXXXXXX
+Create or get Services.
+----
+  File "/root/app/skeleton/startup.py", line XX, in get_or_create_service_id
+NotImplementedError caught! Looks like you need to implement: get_or_create_service_id
+```
 
 ### Need a shortcut
 
