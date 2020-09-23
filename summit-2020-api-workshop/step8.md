@@ -11,7 +11,7 @@ Fill out the `create_event_rule()` function in `startup.py`.
 ## Event Rule JSON
 
 ```json
-               {
+{
                     "rule": {
                         "conditions": {
                             "operator": "or",
