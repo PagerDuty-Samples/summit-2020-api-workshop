@@ -63,3 +63,5 @@ def get_or_create_event_ruleset_id_and_routing_key():
 You can use this command to copy over completed code and skip this step.
 
 `cp ../completed/completed-startup-step7.py startup.py && flask run`{{execute}}
+
+**Close the file editor, and click here to refresh it** -> `./app/skeleton/startup.py`{{open}}

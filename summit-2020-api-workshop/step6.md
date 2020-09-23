@@ -74,3 +74,5 @@ def get_or_create_service_id(escalation_policy_id):
 You can use this command to copy over completed code and skip this step.
 
 `cp ../completed/completed-startup-step6.py startup.py && flask run`{{execute}}
+
+**Close the file editor, and click here to refresh it** -> `./app/skeleton/startup.py`{{open}}

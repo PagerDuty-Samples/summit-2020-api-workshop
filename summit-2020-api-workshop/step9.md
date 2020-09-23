@@ -62,3 +62,5 @@ Press Command-C or Ctrl-C to quit the loop
 You can use this command to copy over completed code and skip this step.
 
 `cp ../completed/completed-startup-step9.py startup.py && flask run`{{execute}}
+
+**Close the file editor, and click here to refresh it** -> `./app/skeleton/startup.py`{{open}}

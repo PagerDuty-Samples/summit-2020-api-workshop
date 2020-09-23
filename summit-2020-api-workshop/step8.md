@@ -113,3 +113,5 @@ def create_event_rule(ruleset_id, service_id):
 You can use this command to copy over completed code and skip this step.
 
 `cp ../completed/completed-startup-step8.py startup.py && flask run`{{execute}}
+
+**Close the file editor, and click here to refresh it** -> `./app/skeleton/startup.py`{{open}}
