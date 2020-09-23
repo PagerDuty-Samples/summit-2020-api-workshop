@@ -9,10 +9,10 @@ def create_app(test_config=None):
     except NotImplementedError:
         import traceback
         exceptiondata = traceback.format_exc().splitlines()
-        exceptionarray = exceptiondata[:2]
+        exceptionarray = exceptiondata[-3:]
         print ("----")
-        print (exceptionarray[1])
-        print ("NotImplementedError caught! exiting...")
+        print (exceptionarray[0])
+        print ("NotImplementedError caught! Looks like you need to implement: " + str(e))
         exit()
 
     import views

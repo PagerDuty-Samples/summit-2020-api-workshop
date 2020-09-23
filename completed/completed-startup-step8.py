@@ -14,7 +14,7 @@ def startup():
     print(f"Got an Escalation Policy Id: {escalation_policy_id}")
     service_id = get_or_create_service_id(escalation_policy_id)
     print(f"Got a Service Id: {service_id}")
-    ruleset_id, integration_key = get_events_v2_integration_key()
+    ruleset_id, integration_key = get_or_create_event_ruleset_id_and_routing_key()
     print(f"Got an Integration Key: {integration_key}")
     create_event_rule(ruleset_id, service_id)
     print(f"Event Rule Created!")
@@ -100,21 +100,25 @@ def get_or_create_service_id(escalation_policy_id):
         print(e.msg)
         print(e.response.text)
 
-def get_events_v2_integration_key():
+def get_or_create_event_ruleset_id_and_routing_key():
     print("Get Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
-            f'/rulesets'
+            f'/rulesets',
+            params={'query': 'PagerDuty Summit Ruleset'}
         )
         if len(rulesets) == 1:
+            print("Get existing Ruleset")
             return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
         elif len(rulesets) == 0:
-            rulesets = PagerDutyAPISession.rpost(
+            print("Creating new Ruleset")
+            ruleset = PagerDutyAPISession.rpost(
                 f'/rulesets',
                 json={
                     'name': 'PagerDuty Summit Ruleset'
                 }
             )
+            return ruleset['id'], rulesets[0]['routing_keys'][0]
         else:
             raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:
@@ -165,4 +169,4 @@ def create_event_rule(ruleset_id, service_id):
 
 def send_twitter_statuses_to_events_API(integration_key, statuses):
     print("Send Twitter Statuses to Events API.")
-    raise NotImplementedError
+    raise NotImplementedError("send_twitter_statuses_to_events_API")

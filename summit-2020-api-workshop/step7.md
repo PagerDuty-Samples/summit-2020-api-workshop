@@ -8,24 +8,28 @@ The routing key (aka integration key) is used to identify the ruleset that we wa
 
 Get the Routing Key from the Default Ruleset using the [Rulesets API](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get). We should only have 1 ruleset with 1 routing key.
 
-Fill out the `get_events_v2_integration_key()` function in `startup.py`.
+Fill out the `get_or_create_event_ruleset_id_and_routing_key()` function in `startup.py`.
 
 ```python
-def get_events_v2_integration_key():
+def get_or_create_event_ruleset_id_and_routing_key():
     print("Get Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
-            f'/rulesets'
+            f'/rulesets',
+            params={'query': 'PagerDuty Summit Ruleset'}
         )
         if len(rulesets) == 1:
+            print("Get existing Ruleset")
             return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
         elif len(rulesets) == 0:
-            rulesets = PagerDutyAPISession.rpost(
+            print("Creating new Ruleset")
+            ruleset = PagerDutyAPISession.rpost(
                 f'/rulesets',
                 json={
                     'name': 'PagerDuty Summit Ruleset'
                 }
             )
+            return ruleset['id'], rulesets[0]['routing_keys'][0]
         else:
             raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:
