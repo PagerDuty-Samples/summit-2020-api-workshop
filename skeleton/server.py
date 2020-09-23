@@ -6,7 +6,7 @@ def create_app(test_config=None):
     try:
         import startup
         startup.startup()
-    except NotImplementedError:
+    except NotImplementedError as e:
         import traceback
         exceptiondata = traceback.format_exc().splitlines()
         exceptionarray = exceptiondata[-3:]
