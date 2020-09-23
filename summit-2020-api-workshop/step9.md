@@ -29,7 +29,7 @@ def send_twitter_statuses_to_events_API(integration_key, statuses):
 ### You should see: Triggering on Events API
 
     Starting Up!
-    Get or create default Escalation Policy
+    Get or create Escalation Policy
     Found 1 escalation policy: P8H24LX
     Got an Escalation Policy Id: P8H24LX
     Get or Create Service.

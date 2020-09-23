@@ -58,7 +58,7 @@ def get_or_create_service_id(escalation_policy_id):
 ## You should see: a service
 
     Starting Up!
-    Get or create default Escalation Policy
+    Get or create Escalation Policy
     Found 1 escalation policy: PXXXXXX
     Got an Escalation Policy Id: PXXXXXX
     Get or Create Service.

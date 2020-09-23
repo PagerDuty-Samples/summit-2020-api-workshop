@@ -11,21 +11,21 @@ As you can see in our documentation for the ["Create Service" endpoint](https://
 
 PagerDuty Developer Accounts don't come with a default escalation policy, so you'll first need to call the ["Create Escalation Policy" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/post) to create one.
 
-We can also list the existing Escalation Policies via the["List Escalation Policies" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get).
+We can also list the existing Escalation Policies via the ["List Escalation Policies" endpoint](https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get).
 
 ## Completed Code
 
 ```python
-def get_or_create_default_escalation_policy_id():
-    print("Get or create default Escalation Policy")
+def get_or_create_escalation_policy_id():
+    print("Get or create Escalation Policy")
     try:
         escalation_policies = PagerDutyAPISession.rget(
             '/escalation_policies',
-            params={'query': 'Default'})
+            params={'query': 'My'})
         if len(escalation_policies) == 1:
-            default_escalation_policy_id = escalation_policies[0]['id']
-            print(f"Found 1 escalation policy: {default_escalation_policy_id}")
-            return default_escalation_policy_id
+            escalation_policy_id = escalation_policies[0]['id']
+            print(f"Found 1 escalation policy: {escalation_policy_id}")
+            return escalation_policy_id
         elif len(escalation_policies) == 0:
             print("No Escalation Policies found, creating one.")
             users = PagerDutyAPISession.rget(
@@ -35,7 +35,7 @@ def get_or_create_default_escalation_policy_id():
                 '/escalation_policies',
                 json={
                     "type": "escalation_policy",
-                    "name": "Default Escalation Policy",
+                    "name": "My Escalation Policy",
                     "escalation_rules": [
                         {
                             "escalation_delay_in_minutes": 5,
@@ -66,7 +66,7 @@ This code uses the `rget` PDPyras method to get information from the List Escala
 ### You should see: an escalation policy
 
     Starting Up!
-    Get or create default Escalation Policy
+    Get or create Escalation Policy
     Found 1 escalation policy: PXXXXXX
     Got an Escalation Policy Id: PXXXXXX
     Create or get Services.

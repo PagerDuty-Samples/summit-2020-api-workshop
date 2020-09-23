@@ -90,7 +90,7 @@ def create_event_rule(ruleset_id, service_id):
 ### You should see: 1 or more tweets from Twitter
 
     Starting Up!
-    Get or create default Escalation Policy
+    Get or create Escalation Policy
     Found 1 escalation policy: P8H24LX
     Got an Escalation Policy Id: P8H24LX
     Get or Create Service.

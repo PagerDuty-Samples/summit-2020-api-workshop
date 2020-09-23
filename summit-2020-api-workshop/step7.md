@@ -45,7 +45,7 @@ def get_or_create_event_ruleset_id_and_routing_key():
 ### You should see: an integration key
 
     Starting Up!
-    Get or create default Escalation Policy
+    Get or create Escalation Policy
     Found 1 escalation policy: PXXXXXX
     Got an Escalation Policy Id: PXXXXXX
     Get or Create Service.

@@ -10,7 +10,7 @@ PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
     print("Starting Up!")
-    escalation_policy_id = get_or_create_default_escalation_policy_id()
+    escalation_policy_id = get_or_create_escalation_policy_id()
     print(f"Got an Escalation Policy Id: {escalation_policy_id}")
     service_id = get_or_create_service_id(escalation_policy_id)
     print(f"Got a Service Id: {service_id}")
@@ -27,16 +27,16 @@ def startup():
         time.sleep(15)
 
 
-def get_or_create_default_escalation_policy_id():
-    print("Get or create default Escalation Policy")
+def get_or_create_escalation_policy_id():
+    print("Get or create Escalation Policy")
     try:
         escalation_policies = PagerDutyAPISession.rget(
             '/escalation_policies',
-            params={'query': 'Default'})
+            params={'query': 'My'})
         if len(escalation_policies) == 1:
-            default_escalation_policy_id = escalation_policies[0]['id']
-            print(f"Found 1 escalation policy: {default_escalation_policy_id}")
-            return default_escalation_policy_id
+            escalation_policy_id = escalation_policies[0]['id']
+            print(f"Found 1 escalation policy: {escalation_policy_id}")
+            return escalation_policy_id
         elif len(escalation_policies) == 0:
             print("No Escalation Policies found, creating one.")
             users = PagerDutyAPISession.rget(
@@ -46,7 +46,7 @@ def get_or_create_default_escalation_policy_id():
                 '/escalation_policies',
                 json={
                     "type": "escalation_policy",
-                    "name": "Default Escalation Policy",
+                    "name": "My Escalation Policy",
                     "escalation_rules": [
                         {
                             "escalation_delay_in_minutes": 5,
@@ -62,7 +62,7 @@ def get_or_create_default_escalation_policy_id():
             )
             return new_escalation_policy['id']
         else:
-            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policies)}")
+            raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
