@@ -4,8 +4,6 @@ from os import environ as ENV
 import twitter
 import time
 
-
-SERVICE_NAME="PDSummit Twitter Service"
 PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():

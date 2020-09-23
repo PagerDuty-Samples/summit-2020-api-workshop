@@ -4,8 +4,6 @@ from os import environ as ENV
 import twitter
 import time
 
-
-SERVICE_NAME="PDSummit Twitter Service"
 PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
 
 def startup():
@@ -72,7 +70,7 @@ def get_or_create_service_id(escalation_policy_id):
     try:
         services = PagerDutyAPISession.rget(
             '/services',
-            params={'query': SERVICE_NAME}
+            params={'query': 'My Service'}
         )
         service_id = None
         if len(services) == 1:
@@ -83,7 +81,7 @@ def get_or_create_service_id(escalation_policy_id):
             new_service = PagerDutyAPISession.rpost(
                 '/services',
                 json={
-                    'name': SERVICE_NAME,
+                    'name': 'My Service',
                     'type': 'service',
                     'description': 'PagerDuty Summit Twitter Matches',
                     "escalation_policy": {
