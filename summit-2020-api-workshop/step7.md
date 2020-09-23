@@ -11,13 +11,26 @@ Get the Routing Key from the Default Ruleset using the [Rulesets API](https://de
 Fill out the `get_events_v2_integration_key()` function in `startup.py`.
 
 ```python
-rulesets = PagerDutyAPISession.rget(
-    f'/rulesets'
-)
-if len(rulesets) == 1:
-    return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
-else:
-    raise Exception(f"Found unexpected number of rulesets. Found {len(rulesets)}")
+def get_events_v2_integration_key():
+    print("Get Events Integration Key.")
+    try:
+        rulesets = PagerDutyAPISession.rget(
+            f'/rulesets'
+        )
+        if len(rulesets) == 1:
+            return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
+        elif len(rulesets) == 0:
+            rulesets = PagerDutyAPISession.rpost(
+                f'/rulesets',
+                json={
+                    'name': 'PagerDuty Summit Ruleset'
+                }
+            )
+        else:
+            raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
+    except PDClientError as e:
+        print(e.msg)
+        print(e.response.text)
 ```{{copy}}
 
 

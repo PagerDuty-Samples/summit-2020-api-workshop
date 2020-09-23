@@ -8,43 +8,79 @@ We can use the Rulesets API for this again, this time we will use the [Rule Crea
 
 Fill out the `create_event_rule()` function in `startup.py`.
 
+## Event Rule JSON
+
+```json
+               {
+                    "rule": {
+                        "conditions": {
+                            "operator": "or",
+                            "subconditions": [
+                                {
+                                    "parameters": {
+                                        "value": "jenntejada",
+                                        "path": "payload.custom_details.entities.user_mentions"
+                                    },
+                                    "operator": "contains"
+                                }
+                            ],
+                        },
+                        "actions": {
+                            "severity": {
+                                "value": "critical"
+                            },
+                            "route": {
+                                "value": service_id
+                            }
+                        }
+                    }
+                }
+```{{copy}}
+
+
 ## Completed Code
 
 ```python
-events_rules = PagerDutyAPISession.rget(
-    f'/rulesets/{ruleset_id}/rules'
-)
-if (len(events_rules)) == 2:
-    print("Event Rule already exists, moving on.")
-    return
-print("Event Rule doesn't exist, creating.")
-event_rule = PagerDutyAPISession.rpost(
-    f'/rulesets/{ruleset_id}/rules',
-    json={
-        "rule": {
-            "conditions": {
-                "operator": "or",
-                "subconditions": [
-                    {
-                        "parameters": {
-                            "value": "jenntejada",
-                            "path": "payload.custom_details.entities.user_mentions"
+def create_event_rule(ruleset_id, service_id):
+    print("Create Event Rule.")
+    try:
+        events_rules = PagerDutyAPISession.rget(
+            f'/rulesets/{ruleset_id}/rules'
+        )
+        if (len(events_rules)) == 2:
+            print("Event Rule already exists, moving on.")
+        else:
+            print("Event Rule doesn't exist, creating.")
+            event_rule = PagerDutyAPISession.rpost(
+                f'/rulesets/{ruleset_id}/rules',
+                json={
+                    "rule": {
+                        "conditions": {
+                            "operator": "or",
+                            "subconditions": [
+                                {
+                                    "parameters": {
+                                        "value": "jenntejada",
+                                        "path": "payload.custom_details.entities.user_mentions"
+                                    },
+                                    "operator": "contains"
+                                }
+                            ],
                         },
-                        "operator": "contains"
+                        "actions": {
+                            "severity": {
+                                "value": "critical"
+                            },
+                            "route": {
+                                "value": service_id
+                            }
+                        }
                     }
-                ],
-            },
-            "actions": {
-                "severity": {
-                    "value": "critical"
-                },
-                "route": {
-                    "value": service_id
                 }
-            }
-        }
-    }
-)
+            )
+    except PDClientError as e:
+        print(e.msg)
+        print(e.response.text)
 ```{{copy}}
 
 ## Run the server again

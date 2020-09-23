@@ -108,8 +108,15 @@ def get_events_v2_integration_key():
         )
         if len(rulesets) == 1:
             return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
+        elif len(rulesets) == 0:
+            rulesets = PagerDutyAPISession.rpost(
+                f'/rulesets',
+                json={
+                    'name': 'PagerDuty Summit Ruleset'
+                }
+            )
         else:
-            raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
+            raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)

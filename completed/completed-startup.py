@@ -108,8 +108,15 @@ def get_events_v2_integration_key():
         )
         if len(rulesets) == 1:
             return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
+        elif len(rulesets) == 0:
+            rulesets = PagerDutyAPISession.rpost(
+                f'/rulesets',
+                json={
+                    'name': 'PagerDuty Summit Ruleset'
+                }
+            )
         else:
-            raise Exception(f"Found more global event rulesets than expected. Found {len(rulesets)}")
+            raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)
@@ -122,35 +129,35 @@ def create_event_rule(ruleset_id, service_id):
         )
         if (len(events_rules)) == 2:
             print("Event Rule already exists, moving on.")
-            return
-        print("Event Rule doesn't exist, creating.")
-        event_rule = PagerDutyAPISession.rpost(
-            f'/rulesets/{ruleset_id}/rules',
-            json={
-                "rule": {
-                    "conditions": {
-                        "operator": "or",
-                        "subconditions": [
-                            {
-                                "parameters": {
-                                    "value": "jenntejada",
-                                    "path": "payload.custom_details.entities.user_mentions"
-                                },
-                                "operator": "contains"
-                            }
-                        ],
-                    },
-                    "actions": {
-                        "severity": {
-                            "value": "critical"
+        else:
+            print("Event Rule doesn't exist, creating.")
+            event_rule = PagerDutyAPISession.rpost(
+                f'/rulesets/{ruleset_id}/rules',
+                json={
+                    "rule": {
+                        "conditions": {
+                            "operator": "or",
+                            "subconditions": [
+                                {
+                                    "parameters": {
+                                        "value": "jenntejada",
+                                        "path": "payload.custom_details.entities.user_mentions"
+                                    },
+                                    "operator": "contains"
+                                }
+                            ],
                         },
-                        "route": {
-                            "value": service_id
+                        "actions": {
+                            "severity": {
+                                "value": "critical"
+                            },
+                            "route": {
+                                "value": service_id
+                            }
                         }
                     }
                 }
-            }
-        )
+            )
     except PDClientError as e:
         print(e.msg)
         print(e.response.text)

@@ -9,15 +9,17 @@ Fill out the `send_twitter_statuses_to_events_API()` function in `startup.py`
 ## Completed Code
 
 ```python
-session = EventsAPISession(integration_key)
+def send_twitter_statuses_to_events_API(integration_key, statuses):
+    print("Send Twitter Statuses to Events API.")
+    session = EventsAPISession(integration_key)
 
-for status in statuses:
-    print("Triggering on Events API")
-    response = session.trigger(
-        f"Matching tweet from user @{status['user']['screen_name']}",
-        'twitter.com',
-        severity='info',
-        custom_details=status)
+    for status in statuses:
+        print("Triggering on Events API")
+        response = session.trigger(
+            f"Matching tweet from user @{status['user']['screen_name']}",
+            'twitter.com',
+            severity='info',
+            custom_details=status)
 ```{{copy}}
 
 ## Run the server again
