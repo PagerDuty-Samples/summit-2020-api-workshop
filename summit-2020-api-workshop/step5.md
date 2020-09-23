@@ -20,19 +20,19 @@ def get_or_create_escalation_policy_id():
     print("Get or create Escalation Policy")
     try:
         escalation_policies = PagerDutyAPISession.rget(
-            '/escalation_policies',
-            params={'query': 'My'})
+            "/escalation_policies",
+            params={"query": "My"})
         if len(escalation_policies) == 1:
-            escalation_policy_id = escalation_policies[0]['id']
+            escalation_policy_id = escalation_policies[0]["id"]
             print(f"Found 1 escalation policy: {escalation_policy_id}")
             return escalation_policy_id
         elif len(escalation_policies) == 0:
             print("No Escalation Policies found, creating one.")
             users = PagerDutyAPISession.rget(
-                '/users'
+                "/users"
             )
             new_escalation_policy = PagerDutyAPISession.rpost(
-                '/escalation_policies',
+                "/escalation_policies",
                 json={
                     "type": "escalation_policy",
                     "name": "My Escalation Policy",
@@ -41,7 +41,7 @@ def get_or_create_escalation_policy_id():
                             "escalation_delay_in_minutes": 5,
                             "targets": [
                                 {
-                                    "id": users[0]['id'],
+                                    "id": users[0]["id"],
                                     "type": "user_reference"
                                 }
                             ]
@@ -49,7 +49,7 @@ def get_or_create_escalation_policy_id():
                     ]
                 }
             )
-            return new_escalation_policy['id']
+            return new_escalation_policy["id"]
         else:
             raise Exception(f"Found unexpected number of escalation_policies {len(escalation_policy)}")
     except PDClientError as e:

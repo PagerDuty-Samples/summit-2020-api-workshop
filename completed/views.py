@@ -13,7 +13,7 @@ def hello_world_route():
 
 @bp.route('/test-pdpyras', methods=['GET'])
 def test_pdpyras_route():
-    session = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
+    session = APISession(ENV.get("PAGERDUTY_REST_API_KEY"))
 
     # Using requests.Session.get:
     response = session.get('/users?total=true')

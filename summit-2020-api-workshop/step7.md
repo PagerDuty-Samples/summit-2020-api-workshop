@@ -15,21 +15,21 @@ def get_or_create_event_ruleset_id_and_routing_key():
     print("Get Events Integration Key.")
     try:
         rulesets = PagerDutyAPISession.rget(
-            f'/rulesets',
-            params={'query': 'PagerDuty Summit Ruleset'}
+            f"/rulesets",
+            params={"query": "PagerDuty Summit Ruleset"}
         )
         if len(rulesets) == 1:
             print("Get existing Ruleset")
-            return rulesets[0]['id'], rulesets[0]['routing_keys'][0]
+            return rulesets[0]["id"], rulesets[0]["routing_keys"][0]
         elif len(rulesets) == 0:
             print("Creating new Ruleset")
             ruleset = PagerDutyAPISession.rpost(
-                f'/rulesets',
+                f"/rulesets",
                 json={
-                    'name': 'PagerDuty Summit Ruleset'
+                    "name": "PagerDuty Summit Ruleset"
                 }
             )
-            return ruleset['id'], rulesets[0]['routing_keys'][0]
+            return ruleset["id"], rulesets[0]["routing_keys"][0]
         else:
             raise Exception(f"Found unexpected global event rulesets than expected. Found {len(rulesets)}")
     except PDClientError as e:

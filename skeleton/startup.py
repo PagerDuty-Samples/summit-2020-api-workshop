@@ -4,7 +4,7 @@ from os import environ as ENV
 import twitter
 import time
 
-PagerDutyAPISession = APISession(ENV.get('PAGERDUTY_REST_API_KEY'))
+PagerDutyAPISession = APISession(ENV.get("PAGERDUTY_REST_API_KEY"))
 
 def startup():
     print("Starting Up!")

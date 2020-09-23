@@ -17,8 +17,8 @@ def send_twitter_statuses_to_events_API(integration_key, statuses):
         print("Triggering on Events API")
         response = session.trigger(
             f"Matching tweet from user @{status['user']['screen_name']}",
-            'twitter.com',
-            severity='info',
+            "twitter.com",
+            severity="info",
             custom_details=status)
 ```{{copy}}
 

@@ -45,14 +45,14 @@ def create_event_rule(ruleset_id, service_id):
     print("Create Event Rule.")
     try:
         events_rules = PagerDutyAPISession.rget(
-            f'/rulesets/{ruleset_id}/rules'
+            f"/rulesets/{ruleset_id}/rules"
         )
         if (len(events_rules)) == 2:
             print("Event Rule already exists, moving on.")
         else:
-            print("Event Rule doesn't exist, creating.")
+            print("Event Rule does not exist, creating.")
             event_rule = PagerDutyAPISession.rpost(
-                f'/rulesets/{ruleset_id}/rules',
+                f"/rulesets/{ruleset_id}/rules",
                 json={
                     "rule": {
                         "conditions": {
@@ -99,7 +99,7 @@ def create_event_rule(ruleset_id, service_id):
     Get Events Integration Key.
     Got an Integration Key: R013E1ZC6XJJ21QDEZ7M4C1R30EDPG0C
     Create Event Rule.
-    Event Rule doesn't exist, creating.
+    Event Rule does not exist, creating.
     Event Rule Created!
     Querying Twitter...
     Twitter returned 1 tweets.
